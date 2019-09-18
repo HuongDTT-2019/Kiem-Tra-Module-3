@@ -1,12 +1,14 @@
-<div *ngIf="book; else nothing">
+<div *ngIf="book; else nothing"  class="container">
+  <h2>Chi tiết sách</h2>
+  <button type="submit" class="btn btn-primary" [routerLink]="['/books/list']"> Xem danh sách</button>
   <h4>
-    {{book.title}}
+    Tên sách: {{book.title}}
   </h4>
   <p>
-    {{book.author}}
+    Tác giả: {{book.author}}
   </p>
   <p>
-    {{book.description}}
+    Mô tả:{{book.description}}
   </p>
 </div>
 

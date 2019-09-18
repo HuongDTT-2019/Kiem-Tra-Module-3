@@ -1,16 +1,23 @@
-<h2> Them Sach Moi</h2>
-<form #formBook="ngForm" (ngSubmit)="addBook(formBook)">
-  <div>
-    <label>Title</label>
-    <input type="text"  name="title" ngModel>
-  </div>
-  <div>
-    <label>Author</label>
-    <input name="author" ngModel="">
-  </div>
-  <div>
-    <label>Description</label>
-    <textarea  cols="30" rows="10" name="description" ngModel></textarea>
-  </div>
-  <button type="button" class="btn btn-primary" >Create</button>
+<h2> Thêm Sách Mới</h2>
+<form #formBook='ngForm' (ngSubmit)="addBook(formBook)">
+  <table>
+    <tr>
+      <td><label>Tên sách</label></td>
+      <td><input type="text"  name="title" ngModel></td>
+    </tr>
+    <tr>
+      <td><label>Tác giả</label></td>
+      <td><input name="author" ngModel></td>
+    </tr>
+    <tr>
+      <td><label>Mô tả</label></td>
+      <td> <textarea  cols="30" rows="10" name="description" ngModel></textarea></td>
+    </tr>
+    <tr>
+      <td>  <button type="submit" class="btn btn-primary" >Thêm Sách</button></td>
+      <td>  <button type="submit" class="btn btn-danger" [routerLink]="['/books/list']"> Thoát</button></td>
+    </tr>
+  </table>
+
+
 </form>

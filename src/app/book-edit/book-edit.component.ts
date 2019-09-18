@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Book} from '../book';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -10,47 +10,29 @@ import {BookService} from '../book.service';
   styleUrls: ['./book-edit.component.scss']
 })
 export class BookEditComponent implements OnInit {
-
   book: Book;
-  bookForm: FormGroup;
   constructor(
     private route: ActivatedRoute,
-    private bookService: BookService,
-    private fb: FormBuilder,
-    private router: Router
-  ) { }
+    private bookService: BookService
+  ) {
+  }
 
   ngOnInit() {
-    this.bookForm = this.fb.group({
-      title: ['', [Validators.required, Validators.minLength(5)]],
-      author: ['', [Validators.required, Validators.minLength(5)]],
-      description: ['', [Validators.required, Validators.minLength(10)]],
-    });
+    this.getBookById();
+  }
+
+  getBookById(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.bookService.getBookById(id).subscribe(
-      next => {
-        this.book = next;
-        this.bookForm.patchValue(this.book);
-      },
-      error => {
-        console.log(error);
-        this.book = null;
-      }
+    this.bookService.getBookById(id).subscribe(book => this.book = book
     );
   }
-  onSubmit() {
-    if (this.bookForm.valid) {
-      const { value } = this.bookForm;
-      const data = {
-        ...this.book,
-        ...value
-      };
-      this.bookService.updateBook(data).subscribe(
-        next => {
-          this.router.navigate(['/list']);
-        },
-        error => console.log(error)
-      );
+
+  editBook() {
+    if (this.book) {
+      this.bookService.updateBook(this.book).subscribe(() => {
+        this.bookService.getBooks();
+        alert('da cap nhat');
+      });
     }
   }
 

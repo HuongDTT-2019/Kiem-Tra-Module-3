@@ -1,10 +1,12 @@
-<button type="button" class="btn btn-outline-primary" [routerLink]="['/books']">Them sach moi</button>
+<h2>Danh sách các cuốn sách</h2>
+<span>Có <a>{{countBook}}</a> cuốn sách</span>
+<button type="button" class="btn btn-outline-primary margin-left" [routerLink]="['/books']">Thêm sách mới</button>
 <table class="table">
   <thead>
   <tr>
     <th scope="col">#</th>
-    <th scope="col">Ten sach</th>
-    <th scope="col">Tac gia</th>
+    <th scope="col">Tên sách</th>
+    <th scope="col">Tác giả</th>
     <th scope="col"></th>
     <th scope="col"></th>
   </tr>
@@ -12,11 +14,11 @@
   <tbody>
   <tr *ngFor="let list of listBook">
     <th scope="row">{{list.id}}</th>
-    <td> <a [routerLink]="['/detail', list.id]">
+    <td> <a [routerLink]="['/books/detail', list.id]">
       {{list.title}}</a></td>
     <td>{{list.author}}</td>
-    <td><button type="button" class="btn btn-primary" [routerLink]="['edit',list.id]">Sua</button></td>
-    <td><button type="button" class="btn btn-danger" (click)="deleteBook(list.id)">Xoa</button></td>
+    <td><button type="submit" class="btn btn-primary" routerLink="/books/edit/{{list.id}}">Sửa</button></td>
+    <td><button type="submit" class="btn btn-danger" (click)="deleteBook(list.id)">Xóa</button></td>
   </tr>
 
 </table>

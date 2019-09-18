@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {BookService} from '../book.service';
 import {Book} from '../book';
 
@@ -9,17 +9,28 @@ import {Book} from '../book';
 })
 export class BookComponent implements OnInit {
   listBook: Book[] = [];
-  constructor(private bookService: BookService) { }
+  countBook: number;
+
+  constructor(private bookService: BookService) {
+  }
 
   ngOnInit() {
-    this.bookService.getBooks().subscribe(next => this.listBook = next, error => {
-      this.listBook = [];
+    this.getBookList();
+    this.bookService.onNewBook.subscribe((time) => {
+      console.log('list books');
+      this.getBookList();
+      this.countBook = this.listBook.length;
     });
   }
+
+  getBookList() {
+    this.bookService.getBooks().subscribe(newList => this.listBook = newList);
+  }
+
   deleteBook(id: number) {
     this.bookService.deleteBook(id).subscribe(() => {
       alert('xoa thanh cong');
-      this.bookService.getBooks();
+      this.getBookList();
     }, error => {
       console.log('error');
     });
