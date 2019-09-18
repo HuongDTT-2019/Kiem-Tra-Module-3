@@ -1,0 +1,16 @@
+<h2> Them Sach Moi</h2>
+<form #formBook="ngForm" (ngSubmit)="addBook(formBook)">
+  <div>
+    <label>Title</label>
+    <input type="text"  name="title" ngModel>
+  </div>
+  <div>
+    <label>Author</label>
+    <input name="author" ngModel="">
+  </div>
+  <div>
+    <label>Description</label>
+    <textarea  cols="30" rows="10" name="description" ngModel></textarea>
+  </div>
+  <button type="button" class="btn btn-primary" >Create</button>
+</form>

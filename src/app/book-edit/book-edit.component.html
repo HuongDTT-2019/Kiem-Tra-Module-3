@@ -1,0 +1,28 @@
+<h2> Sua Thong Tin Sach</h2>
+<form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label>Title</label>
+    <input type="text" formControlName="title">
+  </div>
+  <div *ngIf="bookForm.get('title').valid&&bookForm.get('title').touched" style="color: red">
+    Title is required and min length is 5
+  </div>
+
+  <div>
+    <label>Author</label>
+    <input  type="text" formControlName="author">
+  </div>
+  <div *ngIf="bookForm.get('author').valid&&bookForm.get('author').touched" style="color: red">
+    Body is required and min length is 5
+  </div>
+
+  <div>
+    <label>Description</label>
+    <textarea  cols="30" rows="10" formControlName="description"></textarea>
+  </div>
+  <div *ngIf="bookForm.get('description').valid&&bookForm.get('description').touched" style="color: red">
+    Body is required and min length is 10
+  </div>
+  <button type="button" class="btn btn-primary" >Edit</button>
+</form>
+
